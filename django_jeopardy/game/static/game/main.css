@@ -1,0 +1,169 @@
+@font-face {
+  font-family: 'gyparody';
+  src: local('gyparody'), url('/static/game/fonts/gyparody.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'korinna';
+  src: local('Korinna-Regular'), url('/static/game/fonts/Korinna-Regular.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'Bitter-Regular';
+  src: local('Bigger-Regular'), url('/static/game/fonts/Bitter-Regular.ttf') format("truetype");
+}
+
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 3rem;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .bg-steel {
+    background-color: #060ce9;
+    border-style: none none solid none;
+  }
+
+  .mr-4 {
+    font-family: 'gyparody';
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #FFCC00;
+    font-family: 'gyparody';
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #FFCC00;
+    font-family: 'gyparody';
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+
+  .cols {
+    width: 100%;
+    height: 100%;
+  }
+
+  .episode-box {
+    width: 40%; 
+    min-height: 460px;
+    height: 50%;
+    float: left;
+    background: #060ce9; 
+    color: #FFFF;
+    text-align: center;
+    font-family: 'Swiss 911';
+    font-size: 50px;
+    margin: 2% 3% 5% 7%;
+    padding: 1% 5%;
+  }
+
+  .box-p {
+    font-family: 'korinna';
+    text-align: center;
+    font-size: 25px;
+    color: #FFCC00;
+  }
+
+  a.home_links:link {
+    color: #FFFF;
+  }
+
+  a.home_links:hover {
+    color: #e5e5e5
+  }
+
+  .endless-box {
+    width: 40%; 
+    height: 50%;
+    min-height: 460px;
+    float: right;
+    background: #060ce9;
+    color: #FFFF;
+    text-align: center;
+    font-family: 'Swiss 911';
+    font-size: 50px;
+    margin: 2% 7% 5% 3%;
+    padding: 1% 5%;
+  }
+
+  .mode {
+    font-family: "gyparody";
+    text-align: center;
+    font-size: 100px;
+    margin: 1% 0% 0% 0%;
+  }
+
+  .yformat {
+    font-family: 'Swiss 911';
+    text-align: center;
+    font-size: 60px;
+    color: #060ce9;
+  }
+
+  a.date_links:link {
+    color: #060ce9;
+  }
+
+  a.date_links:hover {
+    color: #282828;
+  }
+
+  a.date_links:visited {
+    color: #A9A9A9;
+  }
+  
+  .misc {
+    font-family: 'Swiss 911';
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .cat {
+    color: #FFCC00;
+    box-sizing: border-box;
+    margin: auto;
+    font-family: 'Swiss 911';
+    text-align: center;
+    font-size: 750px;
+  }
+  
+  .clue-background {
+    padding: 50px;
+    background-color: #060ce9;
+    margin: auto;
+    width: 75%;
+    height: 400px;
+  }
+
+  .clue {
+    box-sizing: border-box;
+    margin: auto;
+    padding: 50px, 50px, 50px, 50px;
+    width: 75;
+    height: 400px;
+    text-align: center;
+  }
+
+  .clue-font {
+    font-family: 'korinna';
+    text-align: center;
+    font-size: 30px;
+    color: #ffff;
+  }
+
+  .answer {
+    font-family: Impact;
+    text-align: center;
+  }
+
+  .user-response {
+    text-align: center;
+    font-family: 'korinna';
+    padding: 10px;
+  }

@@ -1,0 +1,10 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block content %}
+    <div class = "mode">Available Episodes</div>
+    <div class = "yformat">
+    {% for episode in episodes %}
+        <a class = "date_links" href="{% url 'game-episode_mode' %}"> &nbsp; {{ episode }} &nbsp; </a>
+    {% endfor %}
+    </div>
+{% endblock content %}

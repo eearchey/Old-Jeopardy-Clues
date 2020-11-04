@@ -1,0 +1,13 @@
+{% extends "game/base.html" %}
+{% block content %}
+    <div class = "mode">Old Jeopardy! Clues</div>
+    <div class = "episode-box">
+        <a class = "home_links" href="{% url 'game-years' %}"> EPISODE MODE</a>
+        <p class = "box-p">IN EPISODE MODE, YOU CHOOSE AN EPISODE OF <i>JEOPARDY!</i>&nbsp;FROM THE ARCHIVE, THEN PLAY THROUGH ALL THE AVAILABLE CLUES, WITH A RUNNING TOTAL OF YOUR SCORE. YOUR HIGHSCORE FOR THE EPISODE WILL BE SAVED TO YOUR PROFILE. </p>
+    </div>
+    <div class = "endless-box">
+        <a class = "home_links" href="{% url 'game-endless_mode' %}"> ENDLESS MODE </a>
+        <p class = "box-p">IN ENDLESS MODE, A RANDOM CLUE WILL BE PRESENTED FOR YOU TO ANSWER. A RUNNING TOTAL OF YOUR SCORE WILL BE KEPT, AND YOUR HIGHEST ENDLESS MODE SCORE WILL BE SAVED TO YOUR PROFILE.</p>
+    </div>
+
+{% endblock content %}

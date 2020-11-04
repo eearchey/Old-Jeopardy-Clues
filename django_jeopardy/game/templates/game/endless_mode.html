@@ -1,0 +1,92 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block content %}
+    <div class = "mode">Endless Mode</div>
+        <div class = "misc">
+            <b>Airdate:</b> {{clue.airdate}}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <b>Round:</b> {{clue.round}}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <b>Worth:</b> {{clue.worth}}
+        </div>
+        <div class = "clue-background" >
+            <div class = "cat" >
+                <h2>{{clue.category}}</h2>
+            </div>
+            <div class = "clue">
+                <span class = "clue-font">
+                    {{clue.clue}}</span>
+            </div>
+        </div>
+        <div class = "misc" id = "showed_score">
+        </div>
+        <div class = "user-response">
+            What is <input type = "text" id = "user_answer"> ?
+            <button onclick = "clicky()" type = button>Submit</button>
+            <button onclick = "next()" type = button id = "next">Next -></button>
+        </div>
+
+        <p id = "correct">{{clue.answer}}</p>
+        <p id = "value">{{clue.worth}}</p>
+
+        <div class = "answer" id = "answer">
+        </div>
+
+        <script type = "text/javascript">
+        document.getElementById("correct").style.display = "none";
+        document.getElementById("value").style.display = "none";
+        document.getElementById("next").style.visibility = "hidden";
+
+        var score = localStorage.getItem("score");
+        if (score == null) {
+            score = parseInt(0);
+            localStorage.setItem("score", 0);
+        }
+        score = parseInt(score);
+        if (score >= 0) {
+                document.getElementById("showed_score").innerHTML = "Score: $" + score;
+            }
+            else {
+                document.getElementById("showed_score").innerHTML = "Score: -$" + Math.abs(score);
+            }
+
+        function clicky(){
+            var user_answer = document.getElementById("user_answer").value;
+            var correct = document.getElementById("correct").innerHTML;
+            var value = document.getElementById("value").innerHTML;
+            var val2 = value.substring(1);
+            var worth = parseInt(val2);
+            if (user_answer.toLowerCase() == correct.toLowerCase()) {
+                document.getElementById("answer").innerHTML = "Correct!";
+                if (score == 0) {
+                    score = worth;
+                }
+                else {
+                    score += worth;
+                }
+            }
+            else {
+                document.getElementById("answer").innerHTML = "Sorry, the answer is actually " + correct + " not " + user_answer;
+                if (score == 0) {
+                    score = -Math.abs(worth);
+                }
+                else {
+                    score -= worth;
+                }
+            }
+            if (score >= 0) {
+                document.getElementById("showed_score").innerHTML = "Score: $" + score;
+            }
+            else {
+                document.getElementById("showed_score").innerHTML = "Score: -$" + Math.abs(score);
+            }
+            localStorage.setItem("score", score);
+            document.getElementById("next").style.visibility = "visible";
+        };
+
+        function next() {
+            window.location.reload();
+        };
+        </script>
+    
+{% endblock content %}
