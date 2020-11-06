@@ -49,6 +49,12 @@ body {
     height: 100%;
   }
 
+  button { 
+    color:#FFCC00; 
+    background-color:#060ce9;
+    font-family: 'gyparody';
+  }
+
   .episode-box {
     width: 40%; 
     min-height: 460px;

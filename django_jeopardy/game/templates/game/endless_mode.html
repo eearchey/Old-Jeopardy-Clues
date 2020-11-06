@@ -21,9 +21,10 @@
         <div class = "misc" id = "showed_score">
         </div>
         <div class = "user-response">
+            <button onclick = "clears()" type = button id = "clear">Clear score</button>
             What is <input type = "text" id = "user_answer"> ?
-            <button onclick = "clicky()" type = button>Submit</button>
-            <button onclick = "next()" type = button id = "next">Next -></button>
+            <button onclick = "clicky()" type = submit id = "submit">Submit</button>
+            <button onclick = "nexts()" type = button id = "next">Next clue</button>
         </div>
 
         <p id = "correct">{{clue.answer}}</p>
@@ -36,7 +37,6 @@
         document.getElementById("correct").style.display = "none";
         document.getElementById("value").style.display = "none";
         document.getElementById("next").style.visibility = "hidden";
-
         var score = localStorage.getItem("score");
         if (score == null) {
             score = parseInt(0);
@@ -49,8 +49,15 @@
             else {
                 document.getElementById("showed_score").innerHTML = "Score: -$" + Math.abs(score);
             }
+        var user_answer_field = document.getElementById("user_answer");
+        user_answer_field.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("submit").click();
+            }
+        });
 
-        function clicky(){
+        function clicky() {
             var user_answer = document.getElementById("user_answer").value;
             var correct = document.getElementById("correct").innerHTML;
             var value = document.getElementById("value").innerHTML;
@@ -67,12 +74,7 @@
             }
             else {
                 document.getElementById("answer").innerHTML = "Sorry, the answer is actually " + correct + " not " + user_answer;
-                if (score == 0) {
-                    score = -Math.abs(worth);
-                }
-                else {
-                    score -= worth;
-                }
+                score -= worth;
             }
             if (score >= 0) {
                 document.getElementById("showed_score").innerHTML = "Score: $" + score;
@@ -84,8 +86,13 @@
             document.getElementById("next").style.visibility = "visible";
         };
 
-        function next() {
+        function nexts() {
             window.location.reload();
+        };
+
+        function clears() {
+            localStorage.setItem("score", 0);
+            document.getElementById("showed_score").innerHTML = "Score: $0";
         };
         </script>
     

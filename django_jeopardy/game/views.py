@@ -40,7 +40,7 @@ def endless_mode(request):
     
     return render(request, 'game/endless_mode.html', context)
 
-def years(request):
+def episode_years(request):
     episodes = clues.objects.order_by('airdate').distinct('airdate')
     years = []
     for episode in episodes:
@@ -52,10 +52,8 @@ def years(request):
     }
     return render(request, 'game/years.html', context)
 
-def months(request):
+def episode_months(request):
     request.GET.get('year_choice')
-    score = request.GET.get('year_choice')
-    
     episodes = clues.objects.order_by('airdate').distinct('airdate')
     months = []
     for episode in episodes:
@@ -68,7 +66,7 @@ def months(request):
     }
     return render(request, 'game/months.html', context)
 
-def episodes(request):
+def episode_episodes(request):
     episodes = clues.objects.order_by('airdate').distinct('airdate')
     dates = []
     for episode in episodes:
