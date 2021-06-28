@@ -1,0 +1,27 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block content %}
+    <div class = "mode">Available Episodes</div>
+    <div class = "mode_info">{{ month.1 }} of {{ year }}</div>
+    <table class = "board">
+        {% for date_group in dates %}
+            <tr class = "row">
+            {% for date in date_group %}
+                {% if date != "" %}
+                    <th class = "tile board_year">
+                        <!--
+                            <a class = board_year href="/episode_mode/{{year}}/{{month.0}}/{{date}}/single"> &nbsp; {{ date }} &nbsp; </a>
+                        -->
+                        <a class = board_year href="/episode_mode/{{year}}/{{month.0}}/{{date}}/board"> &nbsp; {{ date }} &nbsp; </a>
+                    </th>
+                {% else %}
+                    <th class = "tile board_year"></th>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <script type = "text/javascript">
+        localStorage.setItem("episode_score", 0);
+    </script>
+{% endblock content %}

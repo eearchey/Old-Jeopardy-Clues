@@ -1,0 +1,21 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block content %}
+    <div class = "mode">Available Years</div>
+    <table class = "board">
+        {% for year_group in years %}
+            <tr class = "row">
+            {% for year in year_group %}
+                {% if year != "" %}
+                    <th class = "tile board_cat">
+                        <a class = "board_year" href="{% url 'game-episode_months' year %}">{{ year }}</a>
+                    </th>
+                {% else %}
+                    <th class = "tile board_year"></th>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock content %}

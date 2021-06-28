@@ -1,0 +1,112 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% load customtags %}
+{% block content %}
+    <div class = "episode_mode">Jeopardy!</div>
+    <div class = "score" id = "episode_score"></div>
+    <form method = "GET" action = "/episode_mode/question">
+        <table class = "board">
+            <tr class = "row" >
+                {% for category in categories %}
+                <th class = "tile board_cat" >
+                    {{ category.0 }}
+                </th>
+                {% endfor %}
+            </tr>
+            <tr class = "row" >
+                {% for i in '012345'|make_list %}
+                    {% with forloop.counter0 as j %}
+                        {% if j < categories|length and 0 < categories|get_by_index1:j|length %}
+                            <td class = "tile board_dollar">
+                                <button class = "button-board" id={{categories|get_by_index1:j|get_by_index:0}} onclick="removeClue(this.id);" name="qid" value={{categories|get_by_index1:j|get_by_index:0}}>$200</button>
+                            </td>
+                        {% else %}
+                            <td class = "tile board_dollar"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+            <tr class = "row" >
+                {% for i in '012345'|make_list %}
+                    {% with forloop.counter0 as j %}
+                        {% if j < categories|length and 1 < categories|get_by_index1:j|length %}
+                            <td class = "tile board_dollar">
+                                <button class = "button-board" name="qid" value={{categories|get_by_index1:j|get_by_index:1}}>$400</button>
+                            </td>
+                        {% else %}
+                            <td class = "tile board_dollar"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+            <tr class = "row" >
+                {% for i in '012345'|make_list %}
+                    {% with forloop.counter0 as j %}
+                        {% if j < categories|length and 2 < categories|get_by_index1:j|length %}
+                            <td class = "tile board_dollar">
+                                <button class = "button-board" name="qid" value={{categories|get_by_index1:j|get_by_index:2}}>$600</button>
+                            </td>
+                        {% else %}
+                            <td class = "tile board_dollar"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+            <tr class = "row" >
+                {% for i in '012345'|make_list %}
+                    {% with forloop.counter0 as j %}
+                        {% if j < categories|length and 3 < categories|get_by_index1:j|length %}
+                            <td class = "tile board_dollar">
+                                <button class = "button-board" name="qid" value={{categories|get_by_index1:j|get_by_index:3}}>$800</button>
+                            </td>
+                        {% else %}
+                            <td class = "tile board_dollar"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+            <tr class = "row" >
+                {% for i in '012345'|make_list %}
+                    {% with forloop.counter0 as j %}
+                        {% if j < categories|length and 4 < categories|get_by_index1:j|length %}
+                            <td class = "tile board_dollar">
+                                <button class = "button-board" name="qid" value={{categories|get_by_index1:j|get_by_index:4}}>$1000</button>
+                            </td>
+                        {% else %}
+                            <td class = "tile board_dollar"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    <script type = "text/javascript">
+        window.onload = removeClues;
+        const clues = ["{{categories}}"];
+        var score = localStorage.getItem("episode_score");
+        if (score == null) {
+            score = parseInt(0);
+            localStorage.setItem("episode_score", 0);
+        }
+        score = parseInt(score);
+        if (score >= 0) {
+                document.getElementById("episode_score").innerHTML = "Score: $" + score;
+            }
+        else {
+            document.getElementById("episode_score").innerHTML = "Score: -$" + Math.abs(score);
+        }
+
+        function removeClue(id) {
+            var clue = document.getElementById(id);
+            localStorage.setItem(clue, 'false');
+            document.getElementById(id).disabled = true;
+            document.getElementById(id).hidden = true;
+        }
+        function removeClues() {
+            console.log(clues);
+            console.log(clues[0][1]);
+        }
+    </script>
+{% endblock content %}

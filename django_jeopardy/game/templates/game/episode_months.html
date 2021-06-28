@@ -1,0 +1,21 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block content %}
+    <div class = "mode">Available Months</div>
+    <div class = "mode_info">{{ year }}</div>
+    <table class = "board">
+        {% for month_group in months %}
+            <tr class = "row">
+            {% for month in month_group %}
+                {% if month != "" %}
+                    <td class = "tile align-middle">
+                        <a class = "board_month" href="/episode_mode/{{year}}/{{month.0}}/">{{ month.1 }}</a>
+                    </td>
+                {% else %}
+                    <td class = "tile"></td>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

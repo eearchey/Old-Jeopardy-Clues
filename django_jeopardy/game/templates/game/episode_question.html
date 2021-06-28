@@ -1,53 +1,46 @@
 {% extends "game/base.html" %}
 {% load static %}
 {% block content %}
-    <div class = "mode">Endless Mode</div>
-        <div class = "misc">
-            <b>Airdate:</b> {{clue.airdate}}
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <b>Round:</b> {{clue.round}}
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <b>Worth:</b> {{clue.worth}}
-        </div>
-        <div class = "clue-background" >
+    <div class = "episode_mode">Jeopardy!</div>
+    <div class = "score" id = "episode_score"></div>
+        <div class = "clue-background board-clue" >
             <div class = "cat" >
                 <h2>{{clue.category}}</h2>
+                <h2>{{clue.worth}}</h2>
             </div>
             <div class = "clue">
                 <span class = "clue-font">
                     {{clue.clue}}</span>
             </div>
         </div>
-        <div class = "misc" id = "showed_score">
         </div>
         <div class = "user-response">
-            <button class = "button-endless" onclick = "clears()" type = button id = "clear">Clear score</button>
             What is <input type = "text" id = "user_answer"> ?
-            <button class = "button-endless" onclick = "clicky()" type = submit id = "submit">Submit</button>
-            <button class = "button-endless" onclick = "nexts()" type = button id = "next">Next clue</button>
+            <button onclick = "clicky()" type = submit id = "submit">Submit</button>
+            <button onclick = "back()" type = button id = "back">Back to Board</button>
         </div>
 
         <p id = "correct">{{clue.answer}}</p>
         <p id = "value">{{clue.worth}}</p>
 
-        <div class = "answer" id = "answer"></div>
+        <div class = "answer" id = "answer">
+        </div>
 
         <script type = "text/javascript">
         document.getElementById("correct").style.display = "none";
         document.getElementById("value").style.display = "none";
-        document.getElementById("next").style.visibility = "hidden";
-        var score = localStorage.getItem("score");
+        var score = localStorage.getItem("episode_score");
         if (score == null) {
             score = parseInt(0);
-            localStorage.setItem("score", 0);
+            localStorage.setItem("episode_score", 0);
         }
         score = parseInt(score);
         if (score >= 0) {
-                document.getElementById("showed_score").innerHTML = "Score: $" + score;
+                document.getElementById("episode_score").innerHTML = "Score: $" + score;
             }
-        else {
-            document.getElementById("showed_score").innerHTML = "Score: -$" + Math.abs(score);
-        }
+            else {
+                document.getElementById("episode_score").innerHTML = "Score: -$" + Math.abs(score);
+            }
         var user_answer_field = document.getElementById("user_answer");
         user_answer_field.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
@@ -76,25 +69,17 @@
                 score -= worth;
             }
             if (score >= 0) {
-                document.getElementById("showed_score").innerHTML = "Score: $" + score;
+                document.getElementById("episode_score").innerHTML = "Score: $" + score;
             }
             else {
-                document.getElementById("showed_score").innerHTML = "Score: -$" + Math.abs(score);
+                document.getElementById("episode_score").innerHTML = "Score: -$" + Math.abs(score);
             }
-            localStorage.setItem("score", score);
-            document.getElementById("next").style.visibility = "visible";
+            localStorage.setItem("episode_score", score);
         };
 
-        function nexts() {
-            window.location.reload();
+        function back() {
+            window.history.back();
         };
-
-        function clears() {
-            document.getElementById("showed_score").innerHTML = "Score: $0";
-            localStorage.setItem("score", "0");
-            score = localStorage.getItem("score");
-        };
-
         </script>
     
 {% endblock content %}

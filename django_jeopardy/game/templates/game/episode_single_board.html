@@ -1,0 +1,81 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block content %}
+    <div class = "episode_mode">Jeopardy!</div>
+    <div class = "episode_score" id = "episode_score"></div>
+        <table class = "board">
+            <tr class = "row" >
+                {% for category in categories %}
+                <th class = "tile board_cat" >
+                    {{ category }}
+                </th>
+                {% endfor %}
+            </tr>
+            <tr class = "row" >
+                <td class = "tile board_dollar" id = "200">$200</td>
+                <td class = "tile board_dollar" id = "200">$200</td>
+                <td class = "tile board_dollar" id = "200">$200</td>
+                <td class = "tile board_dollar" id = "200">$200</td>
+                <td class = "tile board_dollar" id = "200">$200</td>
+                {% if categories|length > 5 %}
+                    <td class = "tile board_dollar" id = "200">$200</td>
+                {% endif %}
+            </tr>
+            <tr class = "row" >
+                <td class = "tile board_dollar" id = "400">$400</td>
+                <td class = "tile board_dollar" id = "400">$400</td>
+                <td class = "tile board_dollar" id = "400">$400</td>
+                <td class = "tile board_dollar" id = "400">$400</td>
+                <td class = "tile board_dollar" id = "400">$400</td>
+                {% if categories|length > 5 %}
+                    <td class = "tile board_dollar" id = "400">$400</td>
+                {% endif %}
+            </tr>
+            <tr class = "row" >
+                <td class = "tile board_dollar" id = "600">$600</td>
+                <td class = "tile board_dollar" id = "600">$600</td>
+                <td class = "tile board_dollar" id = "600">$600</td>
+                <td class = "tile board_dollar" id = "600">$600</td>
+                <td class = "tile board_dollar" id = "600">$600</td>
+                {% if categories|length > 5 %}
+                    <td class = "tile board_dollar" id = "600">$600</td>
+                {% endif %}
+            </tr>
+            <tr class = "row" >
+                <td class = "tile board_dollar" id = "800">$800</td>
+                <td class = "tile board_dollar" id = "800">$800</td>
+                <td class = "tile board_dollar" id = "800">$800</td>
+                <td class = "tile board_dollar" id = "800">$800</td>
+                <td class = "tile board_dollar" id = "800">$800</td>
+                {% if categories|length > 5 %}
+                    <td class = "tile board_dollar" id = "800">$800</td>
+                {% endif %}
+            </tr>
+            <tr class = "row" >
+                <td class = "tile board_dollar" id = "1000">$1000</td>
+                <td class = "tile board_dollar" id = "1000">$1000</td>
+                <td class = "tile board_dollar" id = "1000">$1000</td>
+                <td class = "tile board_dollar" id = "1000">$1000</td>
+                <td class = "tile board_dollar" id = "1000">$1000</td>
+                {% if categories|length > 5 %}
+                    <td class = "tile board_dollar" id = "1000">$1000</td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+    
+    <script type = "text/javascript">
+        var score = localStorage.getItem("episode_score");
+        if (score == null) {
+            score = parseInt(0);
+            localStorage.setItem("episode_score", 0);
+        }
+        score = parseInt(score);
+        if (score >= 0) {
+                document.getElementById("episode_score").innerHTML = "Score: $" + score;
+            }
+        else {
+            document.getElementById("episode_score").innerHTML = "Score: -$" + Math.abs(score);
+        }
+    </script>
+{% endblock content %}

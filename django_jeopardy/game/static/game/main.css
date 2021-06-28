@@ -49,10 +49,20 @@ body {
     height: 100%;
   }
 
-  button { 
+  .button-endless { 
     color:#FFCC00; 
     background-color:#060ce9;
     font-family: 'gyparody';
+    cursor: pointer;
+  }
+
+  .button-board { 
+    color:#FFCC00; 
+    background-color:#060ce9;
+    font-family: 'Swiss 911';
+    cursor: pointer;
+    border: none;
+    width: 100%;
   }
 
   .episode-box {
@@ -105,6 +115,19 @@ body {
     margin: 1% 0% 0% 0%;
   }
 
+  .mode_info {
+    font-family: "gyparody";
+    text-align: center;
+    font-size: 50px;
+  }
+
+  .episode_mode {
+    font-family: "gyparody";
+    text-align: center;
+    font-size: 70px;
+    margin: 1% 0% 0% 0%;
+  }
+
   .yformat {
     font-family: 'Swiss 911';
     text-align: center;
@@ -119,12 +142,14 @@ body {
   a.date_links:hover {
     color: #282828;
   }
-
-  a.date_links:visited {
-    color: #A9A9A9;
-  }
   
   .misc {
+    font-family: 'Swiss 911';
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .score {
     font-family: 'Swiss 911';
     text-align: center;
     font-size: 30px;
@@ -172,4 +197,65 @@ body {
     text-align: center;
     font-family: 'korinna';
     padding: 10px;
+  }
+
+  .board {
+    flex: 1;
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    height: 75%;
+    display: grid;
+    flex-wrap: nowrap;
+    justify-content: center;
+    font-weight: bold;
+  }
+    
+  .row {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+  }
+    
+  .tile{
+    width: 200px;
+    height: 85px;
+    padding: 2%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Swiss 911';
+    background: #060ce9;
+    border: 3px solid #000;
+  }
+
+  .board_year {
+    font-size: 3vw;
+    color: #FFCC00;
+  }
+
+  .board_month {
+    font-size: 2.5vw;
+    color: #FFCC00;
+  }
+
+  .board_cat {
+    font-size: 1.5vw;
+    color: #ffff;
+  }
+
+  .board_dollar {
+    font-size: 3.6vw;
+    color: #FFCC00;
+  }
+
+  .board-clue {
+    width: 1200px;
+    height: 510px;
   }
